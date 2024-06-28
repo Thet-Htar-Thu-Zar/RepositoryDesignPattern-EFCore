@@ -67,6 +67,6 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Product>> UpdateProduct
+        public async Task<ActionResult<Product>> UpdateProduct(Product product)
     }
 }
