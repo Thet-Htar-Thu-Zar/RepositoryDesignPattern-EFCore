@@ -41,7 +41,7 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Controllers
 
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -67,6 +67,46 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Product>> UpdateProduct(Product product)
+        public async Task<ActionResult<Product>> UpdateProduct(int id, Product product)
+        {
+            try
+            {
+                if (id != product.ProductId)
+                    return BadRequest("Product ID doesn't exist");
+
+                var productToUpdate = await productRepository.GetProductById(id);
+
+                if (productToUpdate == null)
+                    return NotFound($"Product with Id={id} not found");
+
+                return await productRepository.UpdateProduct(product);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error updating data");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Product>> DeleteProduct(int id)
+        {
+            try
+            {
+                var productToDelete = await productRepository.GetProductById(id);
+
+                if (productToDelete == null)
+                {
+                    return NotFound($"Product with Id = {id} not found");
+                }
+
+                return await productRepository.DeleteProduct(id);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error deleting data");
+            }
+        }
     }
 }
