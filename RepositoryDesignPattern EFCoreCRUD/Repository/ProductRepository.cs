@@ -28,7 +28,6 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Repository
             {
                 appDbContext.Products.Remove(result);
                 await appDbContext.SaveChangesAsync();
-
             }
         }
 
