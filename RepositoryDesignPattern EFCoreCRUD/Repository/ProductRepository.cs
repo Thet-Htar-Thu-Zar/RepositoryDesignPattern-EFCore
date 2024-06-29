@@ -30,7 +30,6 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Repository
                 await appDbContext.SaveChangesAsync();
 
             }
-
         }
 
         public async Task<Product> GetProductById(int id)
