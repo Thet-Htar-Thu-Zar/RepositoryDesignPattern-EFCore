@@ -58,7 +58,6 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Repository
             }
 
             return null;
-
         }
     }
 }
