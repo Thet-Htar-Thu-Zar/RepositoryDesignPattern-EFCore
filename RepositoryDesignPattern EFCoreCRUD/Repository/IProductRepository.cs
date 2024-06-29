@@ -8,6 +8,6 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Repository
         Task<Product> GetProductById(int id);
         Task<Product> CreateProduct(Product product);
         Task<Product> UpdateProduct(Product product);
-        void DeleteProduct(int id);
+        Task DeleteProduct(int id);
     }
 }

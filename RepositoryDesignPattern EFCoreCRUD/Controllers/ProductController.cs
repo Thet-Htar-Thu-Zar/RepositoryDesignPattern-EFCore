@@ -89,18 +89,12 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Product>> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
             try
             {
-                var productToDelete = await productRepository.GetProductById(id);
-
-                if (productToDelete == null)
-                {
-                    return NotFound($"Product with Id = {id} not found");
-                }
-
-                return await productRepository.DeleteProduct(id);
+                await productRepository.DeleteProduct(id);
+                return NoContent();
             }
             catch (Exception)
             {

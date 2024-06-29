@@ -19,16 +19,18 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Repository
             return result.Entity;
         }
 
-        public async void DeleteProduct(int id)
+        public async Task DeleteProduct(int id)
         {
             var result = await appDbContext.Products
-                 .FirstOrDefaultAsync(x => x.ProductId == id);
+                 .FindAsync(id);
 
             if (result != null)
             {
                 appDbContext.Products.Remove(result);
                 await appDbContext.SaveChangesAsync();
+
             }
+
         }
 
         public async Task<Product> GetProductById(int id)
