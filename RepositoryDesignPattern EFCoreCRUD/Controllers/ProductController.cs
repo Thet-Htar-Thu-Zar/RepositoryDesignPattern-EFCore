@@ -93,7 +93,7 @@ namespace RepositoryDesignPattern_EFCoreCRUD.Controllers
         {
             try
             {
-                await productRepository.DeleteProduct(id);
+                await productRepository.DeleteProductAsync(id);
                 return NoContent();
             }
             catch (Exception)
